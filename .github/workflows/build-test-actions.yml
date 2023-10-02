@@ -27,6 +27,9 @@ jobs:
         run: poetry run pytest -v --cov-report term-missing --cov-report xml:coverage.xml --cov=toqito tests/
       - name: Run pylint
         run: poetry run pylint --exit-zero tests/ toqito/
+      - name: Run black
+        run: poetry run black --check .
+        continue-on-error: true
       - name: Run pydocstyle
         run: poetry run pydocstyle tests/ toqito/ || true
         # Remove "|| true" after style issues are fixed
